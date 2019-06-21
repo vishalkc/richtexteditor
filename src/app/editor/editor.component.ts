@@ -88,7 +88,10 @@ export class EditorComponent implements OnInit {
         stop();
         //console.log(view);
         editor.model.change( writer =>{
-            
+            var startPosition = editor.model.createPositionFromPath(editor.model.document.getRoot().getChild(0),[0]);
+            let nextTextNode = startPosition.getShiftedBy(1).textNode.nextSibling;
+            if(nextTextNode === null)
+            return;
             //console.log(editor.model.document.selection.anchor.getShiftedBy(1).textNode);
             if(editor.model.document.selection.anchor.textNode!==null){
                 let nextTextNode = editor.model.document.selection.anchor.textNode.nextSibling;
